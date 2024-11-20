@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company History</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", Arial, sans-serif;
+        background-color: #f8f9fa;
+        overflow-x: hidden;
+      }
+
+      .timeline-container {
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+        padding: 50px 0;
+      }
+
+      .timeline {
+        position: relative;
+        margin-left: 50px;
+        border-left: 3px solid #243642;
+      }
+
+      .event {
+        position: relative;
+        margin-bottom: 50px;
+        padding-left: 20px;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+
+      .event.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .event img {
+        position: absolute;
+        left: -70px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 3px solid #243642;
+        background-color: #fff;
+        object-fit: cover;
+      }
+
+      .event h3 {
+        font-size: 1.5rem;
+        color: #333;
+      }
+
+      .event p {
+        font-size: 1rem;
+        color: #555;
+        margin-top: 5px;
+      }
+
+      .event::before {
+        content: "";
+        position: absolute;
+        left: -3px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 10px;
+        height: 10px;
+        background-color: #243642;
+        border-radius: 50%;
+      }
+
+      .history-title {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .history-title h1 {
+        font-size: 2.5rem;
+        color: #243642;
+        text-shadow: 0 0 10px #243642;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="timeline-container">
+      <div class="history-title">
+        <h1>History</h1>
+      </div>
+      <div class="timeline">
+        <div class="event" id="event1">
+          <img src="https://via.placeholder.com/人" alt="Person 1" />
+          <h3>昭和29年8月</h3>
+          <p>創業</p>
+        </div>
+        <div class="event" id="event2">
+          <img src="https://via.placeholder.com/人" alt="Person 2" />
+          <h3>昭和44年3月</h3>
+          <p>有限会社昭和工業設立</p>
+        </div>
+        <div class="event" id="event3">
+          <img src="https://via.placeholder.com/人" alt="Person 3" />
+          <h3>平成15年1月</h3>
+          <p>前代表取締役社長 小田光晴就任</p>
+        </div>
+        <div class="event" id="event4">
+          <img src="https://via.placeholder.com/人" alt="Person 4" />
+          <h3>令和5年10月</h3>
+          <p>株式会社へ組織変更</p>
+        </div>
+        <div class="event" id="event4">
+          <img src="https://via.placeholder.com/人" alt="Person 4" />
+          <h3>令和5年10月</h3>
+          <p>株式会社へ組織変更</p>
+        </div>
+        <div class="event" id="event4">
+          <img src="https://via.placeholder.com/人" alt="Person 4" />
+          <h3>令和5年10月</h3>
+          <p>株式会社へ組織変更</p>
+        </div>
+        <div class="event" id="event4">
+          <img src="https://via.placeholder.com/人" alt="Person 4" />
+          <h3>令和5年10月</h3>
+          <p>株式会社へ組織変更</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const events = document.querySelectorAll(".event");
+
+      window.addEventListener("scroll", () => {
+        let delay = 0;
+        events.forEach((event, index) => {
+          const rect = event.getBoundingClientRect();
+          if (
+            rect.top < window.innerHeight * 0.8 &&
+            !event.classList.contains("show")
+          ) {
+            setTimeout(() => {
+              event.classList.add("show");
+            }, delay);
+            delay += 200;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

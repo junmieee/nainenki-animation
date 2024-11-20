@@ -1,0 +1,102 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instagram Feed</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      #feed {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+        width: 100%;
+        max-width: 800px;
+      }
+
+      .post {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .post img {
+        width: 100%;
+        display: block;
+      }
+
+      .post p {
+        position: absolute;
+        bottom: 0;
+        margin: 0;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        font-size: 14px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Instagram Feed</h1>
+    <div id="feed"></div>
+
+    <script>
+      // Instagram Graph API Token
+      const accessToken = "YOUR_ACCESS_TOKEN"; // Instagram Access Token
+
+      // Fetch Instagram Feed
+      async function fetchInstagramFeed() {
+        try {
+          const response = await fetch(
+            `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink&access_token=${accessToken}`
+          );
+          const data = await response.json();
+
+          const feedContainer = document.getElementById("feed");
+          feedContainer.innerHTML = ""; // Clear previous feed
+
+          data.data.forEach((post) => {
+            if (
+              post.media_type === "IMAGE" ||
+              post.media_type === "CAROUSEL_ALBUM"
+            ) {
+              const postElement = document.createElement("div");
+              postElement.className = "post";
+              postElement.innerHTML = `
+                <a href="${post.permalink}" target="_blank">
+                  <img src="${post.media_url}" alt="${
+                post.caption || "Instagram Post"
+              }" />
+                </a>
+                <p>${post.caption || "No caption"}</p>
+              `;
+              feedContainer.appendChild(postElement);
+            }
+          });
+        } catch (error) {
+          console.error("Error", error);
+          alert("Failed.");
+        }
+      }
+
+      // Initialize feed
+      fetchInstagramFeed();
+    </script>
+  </body>
+</html> -->

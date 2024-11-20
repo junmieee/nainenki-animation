@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cursor Follow Animation</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+        cursor: none;
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+      }
+
+      .cursor {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        height: 20px;
+        background: rgba(0, 122, 255, 0.7);
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: transform 0.2s ease, width 0.2s ease, height 0.2s ease;
+        z-index: 1000;
+      }
+
+      .cursor.click {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 82, 82, 0.7);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 커서를 따라오는 원 -->
+    <div class="cursor"></div>
+
+    <script>
+      const cursor = document.querySelector(".cursor");
+
+      // 마우스 움직임에 따라 원 위치 변경
+      window.addEventListener("mousemove", (e) => {
+        cursor.style.top = `${e.clientY}px`;
+        cursor.style.left = `${e.clientX}px`;
+      });
+
+      // 클릭 시 원 크기 변경
+      window.addEventListener("mousedown", () => {
+        cursor.classList.add("click");
+      });
+
+      // 클릭 해제 시 원 크기 돌아오게
+      window.addEventListener("mouseup", () => {
+        cursor.classList.remove("click");
+      });
+    </script>
+  </body>
+</html>

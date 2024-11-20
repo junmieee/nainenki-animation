@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flowing Text Animation</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .text-container {
+        position: relative;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100vw;
+      }
+
+      .flowing-text {
+        display: inline-block;
+        font-size: 4rem;
+        font-weight: bold;
+        color: #00faff;
+        animation: flowing 10s linear infinite;
+        text-shadow: 0 0 5px #00faff, 0 0 20px #00faff, 0 0 20px #00faff;
+      }
+
+      @keyframes flowing {
+        from {
+          transform: translateX(0%);
+        }
+        to {
+          transform: translateX(-100%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="text-container">
+      <span class="flowing-text"
+        >こんにちは! 水のように流れる文字効果です!
+      </span>
+      <span class="flowing-text"
+        >こんにちは! 水のように流れる文字効果です!
+      </span>
+    </div>
+
+    <script>
+      const textContainer = document.querySelector(".text-container");
+      const textElement = textContainer.querySelector(".flowing-text");
+      const clone = textElement.cloneNode(true);
+      textContainer.appendChild(clone);
+    </script>
+  </body>
+</html>

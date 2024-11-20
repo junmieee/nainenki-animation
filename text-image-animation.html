@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll Animation</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        overflow: hidden; /* 스크롤바 숨기기 */
+        height: 100vh;
+      }
+
+      .container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        overflow: hidden; /* 화면 고정 효과 */
+      }
+
+      .text {
+        position: absolute;
+        left: 10%;
+        font-size: 3rem;
+        font-weight: bold;
+        transition: transform 1s ease, left 1s ease;
+      }
+
+      .image {
+        position: absolute;
+        right: 10%;
+        width: 200px;
+        height: 200px;
+        background-image: url("https://via.placeholder.com/200");
+        background-size: cover;
+        background-position: center;
+        transition: transform 1s ease, right 1s ease;
+      }
+
+      .scrolled .text {
+        left: 65%; /* 오른쪽으로 이동 */
+        transform: rotate(-90deg);
+      }
+
+      .scrolled .image {
+        right: 65%; /* 왼쪽으로 이동 */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="text">Nainenki</div>
+      <div class="image"></div>
+    </div>
+
+    <script>
+      let scrollPosition = 0;
+
+      document.addEventListener("wheel", (event) => {
+        scrollPosition += event.deltaY;
+
+        const container = document.querySelector(".container");
+        if (scrollPosition > 200) {
+          // 스크롤 위치 기준
+          container.classList.add("scrolled");
+        } else {
+          container.classList.remove("scrolled");
+        }
+
+        // 스크롤 제한 (화면 고정)
+        if (scrollPosition < 0) scrollPosition = 0;
+        if (scrollPosition > 200) scrollPosition = 200;
+      });
+    </script>
+  </body>
+</html>

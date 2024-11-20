@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Floating Text Animation</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+
+        overflow: hidden;
+        font-family: "Poppins", Arial, sans-serif;
+        color: #fff;
+      }
+
+      .text-container {
+        display: flex;
+        gap: 0.3rem;
+      }
+
+      .letter {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9); /* 아래에서 시작하며 살짝 작게 */
+        font-size: 3rem;
+        font-weight: 900;
+        color: #3c3d37;
+        text-shadow: 0 0 10px #3c3d37, 0 0 20px #3c3d37, 0 0 10px #697565;
+        animation: float-up 1s ease-out forwards;
+      }
+
+      @keyframes float-up {
+        0% {
+          opacity: 0;
+          transform: translateY(50px) scale(0.9); /* 살짝 작고 아래에서 시작 */
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(-10px) scale(1.1); /* 위로 올라가며 살짝 커짐 */
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1); /* 원래 크기로 돌아옴 */
+        }
+      }
+
+      @media (max-width: 768px) {
+        .letter {
+          font-size: 2rem; /* 모바일 환경에 적합한 크기 */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="text-container"></div>
+
+    <script>
+      // 텍스트 설정
+      const text = "こんにちは! 浮かび上がる文字効果";
+      const textContainer = document.querySelector(".text-container");
+
+      // 텍스트를 한 글자씩 분리하여 요소 추가
+      text.split("").forEach((char, index) => {
+        const span = document.createElement("span");
+        span.textContent = char; // 글자 내용
+        span.classList.add("letter");
+        span.style.animationDelay = `${index * 0.15}s`;
+        textContainer.appendChild(span);
+      });
+    </script>
+  </body>
+</html>
